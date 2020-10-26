@@ -34,24 +34,3 @@ Service Connection Name: sp-azuredevops-prd-fuelsaver
 <br/>![ServiceConnectionType.png](ServiceConnectionType.png)
 4. Enter the script output
 <br/>![ServiceConnectionSettings.png](ServiceConnectionSettings.png)
-## RACT Required Resource Groups
-
-The following resource groups and service principals are required for the RACT Fuel Saver application:
-
-```PowerShell
-# RACT-Club-Non-Production
-az account set --subscription "df1dd73e-6ea2-4b8f-b903-4752d3993662"
-./resourceGroupSecurity -spName sp-azuredevops-npd-fuelsaver -rgName ract-aue-dev-arg-fuelsaver
-./resourceGroupSecurity -spName sp-azuredevops-npd-fuelsaver -rgName ract-aue-uat-arg-fuelsaver -skipSpCreate
-# RACT-Club-Production
-az account set --subscription "4de5f092-bd1b-491e-9d1b-f91335825783"
-./resourceGroupSecurity -spName sp-azuredevops-prd-fuelsaver -rgName ract-aue-prd-arg-fuelsaver
-```
-
-The above script will create the following:
-
-Subscription | Service Principal | Resource Group | Security Group
----|---|---|---
-RACT-Club-Non-Production | sp-azuredevops-npd-fuelsaver | ract-aue-dev-arg-fuelsaver | ract-aue-dev-arg-fuelsaver-contributor <br/>ract-aue-dev-arg-fuelsaver-reader
-RACT-Club-Non-Production | sp-azuredevops-npd-fuelsaver | ract-aue-uat-arg-fuelsaver | ract-aue-uat-arg-fuelsaver-contributor <br/>ract-aue-uat-arg-fuelsaver-reader
-RACT-Club-Production | sp-azuredevops-prd-fuelsaver | ract-aue-prd-arg-fuelsaver | ract-aue-prd-arg-fuelsaver-contributor <br/>ract-aue-prd-arg-fuelsaver-reader
